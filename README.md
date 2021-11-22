@@ -16,7 +16,7 @@ Some credit due to [Splunk Lateral Movement](https://www.splunk.com/en_us/blog/s
 - Living off the Land - The concept of a syndicate using already-available tools built into the operating systems in order to achieve their goals rather than downloading and using malicious tools that might otherwise be detected and denied.
 - Remotely creating WMI processes
 - Scheduling tasks
-- Creating services (service creation event ID 7036)
+- Stopping/Starting or creating services (stopped or started state: event ID 7036 or new service was installed: event ID 7045)
   - Attackers often create a new service to host their malicious code, or they may take a non-critical service or one that is disabled and modify it to point to their malware, enabling the service if necessary.  It is unusual for a service to be created or modified using the sc.exe utility, so you want to look for instances of this occurring so you can investigate further.  
     - For reference: Microsoft's command-line "Service Configuration Tool" program, named "sc.exe", is in "C:\Windows\System32". It allows administrative users to establish a program as a Windows service in the Service Control Manager (SCM) database and the Registry, either locally or remotely
 - Newly create service principals (service accounts)
