@@ -2,9 +2,9 @@
 
 ## Lateral Movement  
 Some credit due to [Splunk Lateral Movement](https://www.splunk.com/en_us/blog/security/spotting-the-signs-of-lateral-movement.html), [Logrhythm](https://logrhythm.com/blog/what-is-lateral-movement-and-how-to-detect-it/), and [Illusive Networks](https://go.illusivenetworks.com/hubfs/Whitepaper_Breaking%20Banks_Ransomware%20Big%20Game%20Hunting%20in%20FS_Final.pdf?hsCtaTracking=7236503b-115f-4318-a75f-8017a2816fb2%7C23d25c7c-d6c8-42ee-b2fb-1025a9e248ee)
->When looking for lateral movement, we're identifying processes connecting remotely into a host. Our initial search could use Windows security logs, looking for authentication events over the network from rare or unusual hosts or users.  
+>When looking for lateral movement, we're identifying processes connecting remotely into a host. Initial searches could use Windows security logs, looking for authentication events over the network from rare or unusual hosts or users.  Enterprises have lots of anomalous but benign activity.  You need to combine anomaly detection with suspicious activity for practical detection.
 
-`Example query`
+`An example query`
 
 >index=wineventlog sourcetype=WinEventLog:Security (EventCode=4624 OR EventCode=4672) Logon_Type=3 NOT user="*$" NOT user="ANONYMOUS LOGON" 
 | stats  count  BY dest src_ip dest_nt_domain user EventCode 
@@ -27,6 +27,8 @@ Some credit due to [Splunk Lateral Movement](https://www.splunk.com/en_us/blog/s
 - Internal spear phishing to potentiallialy steal credentials allowing for escalation 
 - SSH hijacking
 - Windows admin shares  
+
+---
 
 `Examples of tools used`
 - Masscan - used for port scanning
